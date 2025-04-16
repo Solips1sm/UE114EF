@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<title>EF - UE L114</title>
+	<style>
+		body {
+			font-family: verdana;
+		}
+
+		#content {
+			width: 650px;
+			border: 1px solid black;
+			padding: 10px;
+			margin: auto;
+		}
+
+		.consignes {
+			border: 1px solid black;
+			text-align: left;
+			margin: 10px;
+			width: 600px;
+		}
+
+		p,
+		label,
+		input,
+		span,
+		table,
+		select {
+			font-size: 10px;
+			font-weight: normal;
+		}
+
+		ul,
+		li {
+			font-size: 10px;
+			font-weight: normal;
+		}
+
+		table,
+		caption,
+		th,
+		td {
+			border: 2px solid grey;
+			border-collapse: collapse;
+		}
+
+		caption,
+		th,
+		td {
+			padding: 8px;
+		}
+
+		hr {
+			margin: 20px 0;
+		}
+
+		li {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<h4>
+			<strong>EF-UE L114</strong><br>
+			Nom : Anistratenco<br>
+			Prénom : Serghei<br>
+		</h4>
+		<hr><br>
+		<p>NB : il n'est pas autorisé de modifier l'ossature HTML (pas d'ajout d'attribut !) de cette page ni d'utiliser
+			un framework Javascript.</p><br>
+
+		<fieldset class="consignes">
+			<legend>Exercice n°1</legend>
+			<p>Le formulaire suivant permet de convertir une température en degré Celsius vers une température en degrés
+				Fahrenheit ou Kelvin.</p><br>
+			<form name="convertisseur">
+				<label for="temperature"><strong>Température (en °C) :</strong></label>
+				<input type="text" name="temperature" id="temperature"><br><br>
+
+				<input type="radio" name="unite" value="fahrenheit" id="fahrenheit">
+				<label for="fahrenheit">Convertir en Fahrenheit</label><br><br>
+
+				<input type="radio" name="unite" value="kelvin" id="kelvin">
+				<label for="kelvin">Convertir en Kelvin</label><br><br>
+
+				<input id="convertir" type="button" value="Convertir">
+			</form><br>
+			<p><i>Résultat : </i></p><br>
+			<ol>
+				<li>Écrivez une fonction <code>convertirTemperature()</code> qui prend une température en Celsius
+					(nombre décimal) et une chaîne de caractères correspondant à l’unité cible ("fahrenheit" ou
+					"kelvin"). Elle retourne la température convertie. <br> Formules :
+					<ul>
+						<li>Fahrenheit = (C * 9/5) + 32</li>
+						<li>Kelvin = C + 273.15</li>
+					</ul>
+				</li>
+				<li>Quand l'utilisateur saisit une température et clique sur le bouton <code>Convertir</code>, la
+					conversion doit être affichée dans la balise <code>p</code> du résultat.
+					En cas de saisie invalide, un message "Veuillez entrer une température valide." doit être affiché en
+					rouge et en gras.
+				</li>
+			</ol>
+		</fieldset>
+		<hr>
+		<fieldset class="consignes">
+			<legend>Exercice n°2</legend>
+			<p>
+				Dans cet exercice, vous allez créer un petit quiz sur les capitales. L'utilisateur doit répondre à 3
+				questions. Lorsqu’il clique sur le bouton <code>Vérifier mes réponses</code>, un message est affiché
+				dynamiquement selon ses réponses. Un minuteur démarre automatiquement dès le chargement de la page, et
+				le temps mis pour répondre est affiché à la fin.
+				<br>
+				Pour mesurer le temps écoulé, vous pouvez utiliser <code>Date.now()</code> afin d’enregistrer l’heure de
+				début au chargement de la page, puis l’heure de fin au moment de la soumission, et calculer la durée en
+				millisecondes.
+				<br>
+			<form name="quiz">
+				<label>1. Capitale de la France : </label>
+				<input type="text" class="reponse"><br><br>
+
+				<label>2. Capitale de l’Italie : </label>
+				<input type="text" class="reponse"><br><br>
+
+				<label>3. Capitale de l’Espagne : </label>
+				<input type="text" class="reponse"><br><br>
+
+				<input id="verifier" type="button" value="Vérifier mes réponses"><br><br>
+
+				<!-- Options supplémentaires -->
+				<label><input type="radio" name="option" value="score" checked> Afficher le score</label><br>
+				<label><input type="radio" name="option" value="correction"> Corriger les réponses</label><br>
+				<label><input type="radio" name="option" value="recommencer"> Recommencer</label><br>
+			</form>
+
+			<br>
+			<div id="feedback"></div>
+			<ol>
+				<li>Écrivez une fonction qui prend un tableau de réponses et retourne le nombre de bonnes réponses. Les
+					réponses correctes (insensibles à la casse) sont <code>"Paris"</code>, <code>"Rome"</code> et
+					<code>"Madrid"</code>.
+				</li>
+
+				<li>Lorsqu’on clique sur le bouton <code>Vérifier mes réponses</code>, affichez dynamiquement dans une
+					balise <code>&lt;p&gt;</code> (créée dans la <code>&lt;div id="feedback"&gt;</code>) :
+					<ul>
+						<li>Le score sur 3,</li>
+						<li>Le temps mis pour répondre depuis le chargement de la page (en secondes),</li>
+						<li>Un message selon le score obtenu :
+							<ul>
+								<li><strong>3/3</strong> : « <i>Felicitations !</i> » (texte vert)</li>
+								<li><strong>0/3</strong> : « <i>Aucune bonne réponse. Revisez les capitales !</i> »
+									(texte rouge et gras)</li>
+								<li><strong>1 ou 2/3</strong> : « <i>Réessayez !</i> » (texte rouge et gras)</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li>Si l’option "Corriger les réponses" est sélectionnée : les bonnes réponses doivent être affichées en
+					dessous de chaque champ (dans une autre balise <code>&lt;span&gt;</code> ajoutée dynamiquement).
+				</li>
+
+				<li>Si l’option "Recommencer" est sélectionnée : les champs de réponse sont vidés et le minuteur
+					redémarre.</li>
+			</ol>
+		</fieldset>
+	</div>
+	<script>
+		window.addEventListener("DOMContentLoaded", function () {
+			//start timer from : https://stackoverflow.com/questions/41632942/how-to-measure-time-elapsed-on-javascript
+			var startTime, endTime;
+			start();
+			function start() {
+				startTime = new Date();
+				console.log("Started from timestamp  " + startTime)
+			};
+
+			function restartTime() {
+				startTime = Date.now();
+				console.log("Restarted from timestamp  " + startTime)
+			}
+
+			function passedSince() {
+				endTime = new Date();
+				console.log(startTime);
+				console.log(endTime);
+				var timeDiff = endTime - startTime; //in ms
+				// strip the ms
+				timeDiff /= 1000;
+
+				// get seconds 
+				var seconds = Math.round(timeDiff);
+				console.log(seconds + " seconds passed since");
+				return seconds;
+			}
+			//#region  FIRST 
+			// get the value of the form input, on the event of clicking the button, taking in the account the bool for Fahr or Kelvin
+			// we need to parseInt from the value
+			function convertFarh(sasa) {
+				return (sasa * 9 / 5) + 32
+			}
+			function convertKelv(sasa) {
+				return sasa + 273.15
+			}
+			function convertirTemperature(t, isFahr, isKelv, isNotNumber) {
+				let resultat;
+				if (!isNotNumber) {
+					if (isFahr) {
+						resultat = "<i> Résultat : " + convertFarh(t) + "</i>";
+					}
+					else if (isKelv) {
+						resultat = "<i> Résultat : " + convertKelv(t) + "</i>";
+					}
+				}
+				else {
+					resultat = "<p style='color:red'><strong>Veuillez entrer une température valide.</strong></p>"
+				}
+				return resultat;
+			}
+
+			document.getElementById("convertir").addEventListener("click", function () {
+				var input = document.getElementById("temperature").value;
+				console.log(input);
+				var resultat;
+				var parsedInput = parseFloat(input);
+				console.log(parsedInput);
+				let isNotNumber = isNaN(parsedInput);
+				// check which bool triggered
+				let isFahr = document.getElementById("fahrenheit").checked == true;
+				let isKelv = document.getElementById("kelvin").checked == true;
+				console.log(isFahr + " is FAHR");
+				console.log(isKelv + " is notFAHR");
+
+				resultat = convertirTemperature(parsedInput, isFahr, isKelv, isNotNumber)
+				// change p to the resultat
+				console.log("test");
+				var fieldset1 = document.getElementsByClassName("consignes")[0];
+				console.log(fieldset1);
+
+				fieldset1.children[5].innerHTML = resultat;
+				paragraph = resultat;
+				console.log(paragraph);
+			});
+			//#endregion
+			// form an array from the response
+			// store a correct array
+			// loop over and compare values
+			// array of 3 -> count as response
+			const a = ["Paris", "Rome", "Madrid"];
+			function babaguga(a, b) {
+				var count = 0;
+				for (var i = 0; i < a.length; i++) {
+					if (a[i].toLowerCase() === b[i].toLowerCase()) { // https://www.w3schools.com/jsref/jsref_tolowercase.asp
+						count++;
+					}
+				}
+				return count;
+			}
+
+			var three = "<p style='color:green'><i> Felicitations! </i></p>"
+			var nothing = "<p style='color:red'><strong> Aucune bonne réponse. Revisez les capitales ! </strong></p>"
+			var inbetween = "<p style='color:red'><strong> Réessayez ! </strong></p>"
+
+			document.getElementById("verifier").addEventListener("click", function () {
+				// texts:
+				var fieldset2 = document.getElementsByClassName("consignes")[1];
+				var form = document.getElementsByName("quiz")[0];
+				var score = document.querySelector('[value="score"]').checked == true; // https://stackoverflow.com/questions/69960031/can-i-get-element-by-value-in-javascript
+				var correction = document.querySelector('[value="correction"]').checked == true;
+				var restart = document.querySelector('[value="recommencer"]').checked == true;
+
+				console.log(form);
+				console.log(score);
+				console.log(correction);
+				console.log(restart);
+				var inputFields = document.querySelectorAll("input.reponse");
+				console.log(inputFields);
+
+				var x, y, z;
+				x = inputFields[0].value;
+				y = inputFields[1].value;
+				z = inputFields[2].value;
+				const b = [x, y, z]
+				console.log(x + y + z);
+				console.log(b);
+				console.log(a);
+
+				if (score) {
+					var feedback = document.getElementById("feedback");
+					var matches = babaguga(a, b)
+					console.log(matches);
+					switch (matches) {
+						case 3: feedback.innerHTML = three;
+							break;
+						case 0: feedback.innerHTML = nothing;
+							break;
+						default:
+							feedback.innerHTML = inbetween;
+					}
+
+					var para = document.createElement("p");
+					var node = document.createTextNode(matches + "/3 dans " + passedSince() + " secondes");
+					para.appendChild(node);
+					var element = document.getElementById("feedback");
+					element.appendChild(para);
+				}
+				if (restart) { // https://stackoverflow.com/questions/17237772/html-how-to-clear-input-using-javascript
+					console.log("attempting restart");
+					form.reset();
+					restartTime();
+					var element = document.getElementById("feedback");
+					element.removeChild(element.children[1]);
+					element.removeChild(element.children[0]);
+					form.removeChild(6);
+					form.removeChild(12);
+					form.removeChild(18)
+
+				}
+				if (correction) {
+					var g = [5, 11, 18]
+					for (let i = 0; i < 3; i++) {
+						let spanni = document.createElement("span");
+						let paraggi = document.createElement("p");
+						paraggi.innerHTML = a[i];
+						spanni.append(paraggi);
+						console.log(spanni);
+						console.log(form[i]);
+						form.insertBefore(spanni, form.childNodes[g[i]]);
+					}
+				}
+			});
+
+
+			console.log(feedback);
+
+		})
+	</script>
+</body>
+
+</html>
